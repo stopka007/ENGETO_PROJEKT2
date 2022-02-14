@@ -36,7 +36,7 @@ def cows_bulls():
             else:
                 cows = 0 # cows = pokud uzivatel trefi hadane cislo ale ne primo i na jeho umisteni
                 bulls = 0 # bulls = pokud uzivatel trefi hadane cislo a trefi se i na jeho umisteni
-                for i in split_vstup: #for smycka na pocitani uhodnutych cisel a vypsani kolik cows a bulls uzivatel ma
+                for i in set(split_vstup): #for smycka na pocitani uhodnutych cisel a vypsani kolik cows a bulls uzivatel ma
                     if i in split_number and split_vstup.index(i) == split_number.index(i):
                         bulls += 1
                     elif i in split_number:
