@@ -27,16 +27,16 @@ def cows_bulls():
         vstup = input("Enter a 4 digit number: ")
         pocet_pokusu += 1
         print(oddelovac)
-        if len(vstup) == 4 and vstup.isdigit(): #zkontroluje jestli vstup od uzivatele obsahuje jen 4 znaky a vsechny jsou cisla
-            split_vstup = [int(i) for i in vstup] #rozdeli vstup na jednotliva cisla na pozdeji for cyklus
-            split_number = [int(i) for i in number] #rozdeli vygenerovane cislo na jednotliva cisla na pozdejsi for cyklus
+        if len(set(vstup)) == 4 and vstup.isdigit(): #zkontroluje jestli vstup od uzivatele obsahuje jen 4 znaky a vsechny jsou cisla
             if vstup == number:
                 neuhadnuto == False
                 return (f"Correct, you have guessed the right number in {pocet_pokusu} guesses.")
             else:
                 cows = 0 # cows = pokud uzivatel trefi hadane cislo ale ne primo i na jeho umisteni
                 bulls = 0 # bulls = pokud uzivatel trefi hadane cislo a trefi se i na jeho umisteni
-                for i in set(split_vstup): #for smycka na pocitani uhodnutych cisel a vypsani kolik cows a bulls uzivatel ma
+                split_vstup = [int(i) for i in vstup]  # rozdeli vstup na jednotliva cisla na pozdeji for cyklus
+                split_number = [int(i) for i in number]  # rozdeli vygenerovane cislo na jednotliva cisla na pozdejsi for cyklus
+                for i in split_vstup: #for smycka na pocitani uhodnutych cisel a vypsani kolik cows a bulls uzivatel ma
                     if i in split_number and split_vstup.index(i) == split_number.index(i):
                         bulls += 1
                     elif i in split_number:
@@ -53,6 +53,9 @@ def cows_bulls():
                 else:
                     print(f"Cows = {cows} and Bulls = {bulls}")
                     print(oddelovac)
+        elif len(set(vstup)) <= 3 and vstup.isdigit():
+            print("Please don't use duplicate numbers")
+            print(oddelovac)
         else:
             print("Wrong number, try again")
             print(oddelovac)
